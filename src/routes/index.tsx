@@ -9,10 +9,10 @@ import atlas from "@/assets/atlas-chart.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Austral Beacon Media — Southern Geography & Lighthouses" },
-      { name: "description", content: "Documenting the lighthouses and maritime routes at the edge of the Americas." },
-      { property: "og:title", content: "Austral Beacon Media" },
-      { property: "og:description", content: "Mapping the Chilean austral frontier through geography, navigation and southern memory." },
+      { title: "Austral Beacon Media — Lighthouse & Maritime Geography Intelligence" },
+      { name: "description", content: "A specialized intelligence platform documenting the southern lighthouse network, maritime routes and navigation systems of the Chilean far south — Puerto Williams, Navarino, Cape Horn, Chilean Antarctica." },
+      { property: "og:title", content: "Austral Beacon Media — Lighthouse & Maritime Geography" },
+      { property: "og:description", content: "Documenting the southern lighthouse network, maritime routes and navigational heritage of the Chilean austral frontier." },
       { property: "og:image", content: hero },
       { property: "twitter:image", content: hero },
     ],
@@ -40,15 +40,15 @@ function Home() {
           <div className="flex items-center gap-4 mb-8">
             <span className="h-px w-16 bg-primary" />
             <p className="font-mono text-xs tracking-[0.3em] uppercase text-primary">
-              54° 56′ S — 67° 37′ W
+              Lighthouse & Maritime Intelligence — 54° 56′ S
             </p>
           </div>
           <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl leading-[0.9] text-balance max-w-4xl">
-            Mapping the
-            <span className="block italic text-primary">austral frontier.</span>
+            The southern
+            <span className="block italic text-primary">lighthouse network.</span>
           </h1>
           <p className="mt-10 max-w-xl text-lg text-muted-foreground leading-relaxed">
-            An independent editorial and geographic platform documenting the lighthouse network, maritime routes and southern territories of Chile — from the Strait of Magellan to Cape Horn and Chilean Antarctica.
+            A specialized geographic intelligence platform documenting the lighthouses, maritime routes, navigation systems and frontier islands of the Chilean far south — from the Strait of Magellan through Puerto Williams and Cape Horn to Chilean Antarctica.
           </p>
           <div className="mt-12 flex flex-wrap gap-4">
             <Link
@@ -67,11 +67,31 @@ function Home() {
         </div>
       </section>
 
+      {/* CAPABILITIES */}
+      <section className="max-w-7xl mx-auto px-6 lg:px-10 py-32">
+        <p className="eyebrow mb-8">Areas of Authority</p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-px bg-border border border-border">
+          {[
+            { n: "01", t: "Lighthouse Systems", d: "Beacons, ranges and navigational marks of the austral coast." },
+            { n: "02", t: "Maritime Routes", d: "Channels, passages and sailing directions of the southern seas." },
+            { n: "03", t: "Cartography", d: "Charts and field maps of the Chilean far south." },
+            { n: "04", t: "Expedition Geography", d: "Remote islands, fjords and frontier reconnaissance." },
+            { n: "05", t: "Southern Navigation", d: "Pilotage, signals and navigational heritage." },
+          ].map((c) => (
+            <div key={c.n} className="bg-background p-6">
+              <p className="font-mono text-[0.65rem] tracking-widest text-primary mb-4">{c.n}</p>
+              <h3 className="font-display text-lg mb-2">{c.t}</h3>
+              <p className="text-xs text-muted-foreground leading-relaxed">{c.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* MANIFESTO */}
-      <section className="max-w-5xl mx-auto px-6 lg:px-10 py-32">
+      <section className="max-w-5xl mx-auto px-6 lg:px-10 pb-32">
         <p className="eyebrow mb-8">Editorial Compass</p>
         <p className="font-display text-3xl md:text-5xl leading-tight text-balance">
-          “Documenting the lighthouses and maritime routes at the <span className="text-primary italic">edge of the Americas</span> — where geography, navigation and memory converge.”
+          “We map what guides ships through the <span className="text-primary italic">southernmost waters of the Americas</span> — the lighthouses, the channels, the islands at the end of the chart.”
         </p>
       </section>
 
@@ -79,21 +99,21 @@ function Home() {
       <section className="max-w-7xl mx-auto px-6 lg:px-10 py-20">
         <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
           <div>
-            <p className="eyebrow mb-3">Field Territories</p>
-            <h2 className="font-display text-4xl md:text-5xl">Where we look south.</h2>
+            <p className="eyebrow mb-3">Coverage Territories</p>
+            <h2 className="font-display text-4xl md:text-5xl">The austral chart.</h2>
           </div>
-          <Link to="/atlas-projects" className="font-mono text-xs tracking-widest uppercase text-primary hover:text-beacon">
-            View Atlas →
+          <Link to="/lighthouse-network" className="font-mono text-xs tracking-widest uppercase text-primary hover:text-beacon">
+            Enter the Network →
           </Link>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
           {[
+            { img: hero, title: "Lighthouse Network", coord: "—", note: "Beacons of the southern coast" },
+            { img: capeHorn, title: "Cape Horn", coord: "55° 58′ S", note: "The terminal cape" },
+            { img: navarino, title: "Navarino Island", coord: "55° S", note: "Frontier island geography" },
+            { img: atlas, title: "Puerto Williams", coord: "54° 56′ S", note: "The southernmost port" },
             { img: hero, title: "Strait of Magellan", coord: "53° S", note: "The interoceanic passage" },
-            { img: navarino, title: "Navarino Island", coord: "55° S", note: "Forests, fjords, frontier" },
-            { img: capeHorn, title: "Cape Horn", coord: "55° 58′ S", note: "The end of the continent" },
-            { img: antarctica, title: "Chilean Antarctica", coord: "62°+ S", note: "Beyond the Drake Passage" },
-            { img: atlas, title: "Puerto Williams", coord: "54° 56′ S", note: "The southernmost town" },
-            { img: hero, title: "Lighthouse Network", coord: "—", note: "Beacons of the south" },
+            { img: antarctica, title: "Chilean Antarctica", coord: "62°+ S", note: "Across the Drake Passage" },
           ].map((t) => (
             <article key={t.title} className="group relative bg-background overflow-hidden aspect-[4/5]">
               <img
@@ -123,24 +143,24 @@ function Home() {
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           <div className="border border-border p-8 hover:border-primary transition-colors">
-            <p className="font-mono text-[0.65rem] tracking-widest text-primary mb-6">PARENT BRAND</p>
+            <p className="font-mono text-[0.65rem] tracking-widest text-primary mb-6">INTELLIGENCE PLATFORM</p>
             <h3 className="font-display text-2xl mb-3">Austral Beacon Media</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              The independent editorial parent. Custodian of southern geographic storytelling.
+              The parent platform. Specialized in lighthouse systems, maritime routes and southern navigation.
             </p>
           </div>
           <div className="border border-border p-8 hover:border-primary transition-colors">
-            <p className="font-mono text-[0.65rem] tracking-widest text-primary mb-6">EDITORIAL</p>
+            <p className="font-mono text-[0.65rem] tracking-widest text-primary mb-6">CARTOGRAPHIC LAYER</p>
             <h3 className="font-display text-2xl mb-3">End of the World Atlas</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              A cartographic and editorial project mapping coasts, lighthouses and routes of the austral world.
+              Charts, beacons and route documentation of the austral coasts and channels.
             </p>
           </div>
           <div className="border border-border p-8 hover:border-primary transition-colors">
-            <p className="font-mono text-[0.65rem] tracking-widest text-primary mb-6">EXPEDITION</p>
+            <p className="font-mono text-[0.65rem] tracking-widest text-primary mb-6">EXPEDITION LAYER</p>
             <h3 className="font-display text-2xl mb-3">End of the World Travel</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              The travel and expedition layer — bringing the Atlas into the field.
+              Field operations into the lighthouse network, southern islands and Antarctic approaches.
             </p>
           </div>
         </div>

@@ -7,10 +7,10 @@ export function SiteFooter() {
         <div className="md:col-span-2">
           <p className="eyebrow mb-3">Austral Beacon Media</p>
           <h3 className="font-display text-2xl text-balance max-w-sm">
-            Mapping the Chilean austral frontier through geography, navigation and southern memory.
+            A lighthouse and maritime geography intelligence platform for the Chilean far south.
           </h3>
           <p className="text-sm text-muted-foreground mt-4 max-w-md">
-            Independent editorial platform documenting the lighthouse network, maritime routes and southern territories at the edge of the Americas.
+            Independent documentation of the southern lighthouse network, navigation systems, maritime routes and frontier territories — Strait of Magellan, Puerto Williams, Navarino Island, Cape Horn and Chilean Antarctica.
           </p>
         </div>
         <div>
