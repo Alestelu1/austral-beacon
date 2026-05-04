@@ -6,9 +6,9 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About — Austral Beacon Media" },
-      { name: "description", content: "An independent editorial platform for southern geography, exploration and cultural memory." },
+      { name: "description", content: "An independent intelligence platform specialized in the southern lighthouse network, maritime routes and navigational heritage of the Chilean far south." },
       { property: "og:title", content: "About Austral Beacon Media" },
-      { property: "og:description", content: "An independent editorial platform for southern geography, exploration and cultural memory." },
+      { property: "og:description", content: "Specialized lighthouse, maritime and frontier geography intelligence for the Chilean austral region." },
       { property: "og:image", content: navarino },
     ],
   }),
@@ -20,19 +20,19 @@ function About() {
     <PageShell>
       <PageHeader
         eyebrow="About — 01"
-        title="An independent editorial platform for southern geography."
-        lede="Austral Beacon Media is the parent organisation behind a small constellation of projects devoted to the geography, navigation and cultural memory of the Chilean far south."
+        title="A lighthouse and maritime geography intelligence platform."
+        lede="Austral Beacon Media is an independent platform specialized in the southern lighthouse network of Chile — its maritime routes, navigation systems, remote islands and frontier territories."
       />
       <section className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 pb-24">
         <div className="lg:col-span-7 space-y-8 text-lg leading-relaxed text-muted-foreground">
           <p>
-            We work at the intersection of cartography, photojournalism and cultural reportage. Our editorial focus is the network of southern lighthouses, the maritime routes that thread between them, and the territories that depend on those signals — the Strait of Magellan, Navarino Island, Cape Horn and the Chilean Antarctic Territory.
+            We are not a general media outlet. Our work is narrow and specialized: documenting the beacons, channels and pilotage of the Chilean far south — the Strait of Magellan, Puerto Williams, Navarino Island, Cape Horn and the Chilean Antarctic Territory.
           </p>
           <p>
-            The project is independent. It is not affiliated with any government, military institution, tourism authority, or official public agency. Everything we publish is editorial, educational and geographic in nature.
+            The platform combines cartography, navigational research and field reconnaissance. We publish chart notes, lighthouse records, route documentation and frontier geography drawn from primary sources and direct observation.
           </p>
           <p>
-            We avoid political framings and promotional language. We try, instead, to make the southern frontier legible — through maps, archives, and quiet, careful field reporting.
+            Austral Beacon Media is independent. It is not affiliated with any government, military institution, tourism authority, or official public agency. All material is geographic, educational and editorial in nature — never promotional and never political.
           </p>
         </div>
         <aside className="lg:col-span-5">
@@ -47,9 +47,9 @@ function About() {
         <div className="hairline mb-16" />
         <div className="grid md:grid-cols-3 gap-12">
           {[
-            { n: "Editorial", t: "Independent journalism", d: "No sponsored coverage. No institutional alignment. Reporting funded by the work itself." },
-            { n: "Geographic", t: "Cartographic rigour", d: "We publish charts, route notes and field maps grounded in nautical and historical sources." },
-            { n: "Cultural", t: "Southern memory", d: "Lighthouses, vessels, towns and people — the human texture of the austral frontier." },
+            { n: "Lighthouses", t: "Network documentation", d: "A working index of southern beacons — coordinates, history, sectors and current status." },
+            { n: "Maritime", t: "Routes & pilotage", d: "Channel-by-channel notes on the southern passages, drawn from charts and sailing directions." },
+            { n: "Frontier", t: "Island geography", d: "Field reconnaissance of Navarino, Cape Horn, the Diego Ramírez group and the Antarctic approaches." },
           ].map((p) => (
             <div key={p.n}>
               <p className="font-mono text-[0.7rem] tracking-widest text-primary mb-4">{p.n}</p>
