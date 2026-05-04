@@ -9,8 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MaritimeRoutesRouteImport } from './routes/maritime-routes'
+import { Route as LighthouseNetworkRouteImport } from './routes/lighthouse-network'
+import { Route as JournalRouteImport } from './routes/journal'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AtlasProjectsRouteImport } from './routes/atlas-projects'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const MaritimeRoutesRoute = MaritimeRoutesRouteImport.update({
+  id: '/maritime-routes',
+  path: '/maritime-routes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LighthouseNetworkRoute = LighthouseNetworkRouteImport.update({
+  id: '/lighthouse-network',
+  path: '/lighthouse-network',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalRoute = JournalRouteImport.update({
+  id: '/journal',
+  path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtlasProjectsRoute = AtlasProjectsRouteImport.update({
+  id: '/atlas-projects',
+  path: '/atlas-projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +55,116 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/atlas-projects': typeof AtlasProjectsRoute
+  '/contact': typeof ContactRoute
+  '/journal': typeof JournalRoute
+  '/lighthouse-network': typeof LighthouseNetworkRoute
+  '/maritime-routes': typeof MaritimeRoutesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/atlas-projects': typeof AtlasProjectsRoute
+  '/contact': typeof ContactRoute
+  '/journal': typeof JournalRoute
+  '/lighthouse-network': typeof LighthouseNetworkRoute
+  '/maritime-routes': typeof MaritimeRoutesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/atlas-projects': typeof AtlasProjectsRoute
+  '/contact': typeof ContactRoute
+  '/journal': typeof JournalRoute
+  '/lighthouse-network': typeof LighthouseNetworkRoute
+  '/maritime-routes': typeof MaritimeRoutesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/atlas-projects'
+    | '/contact'
+    | '/journal'
+    | '/lighthouse-network'
+    | '/maritime-routes'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/atlas-projects'
+    | '/contact'
+    | '/journal'
+    | '/lighthouse-network'
+    | '/maritime-routes'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/atlas-projects'
+    | '/contact'
+    | '/journal'
+    | '/lighthouse-network'
+    | '/maritime-routes'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AtlasProjectsRoute: typeof AtlasProjectsRoute
+  ContactRoute: typeof ContactRoute
+  JournalRoute: typeof JournalRoute
+  LighthouseNetworkRoute: typeof LighthouseNetworkRoute
+  MaritimeRoutesRoute: typeof MaritimeRoutesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/maritime-routes': {
+      id: '/maritime-routes'
+      path: '/maritime-routes'
+      fullPath: '/maritime-routes'
+      preLoaderRoute: typeof MaritimeRoutesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lighthouse-network': {
+      id: '/lighthouse-network'
+      path: '/lighthouse-network'
+      fullPath: '/lighthouse-network'
+      preLoaderRoute: typeof LighthouseNetworkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal': {
+      id: '/journal'
+      path: '/journal'
+      fullPath: '/journal'
+      preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atlas-projects': {
+      id: '/atlas-projects'
+      path: '/atlas-projects'
+      fullPath: '/atlas-projects'
+      preLoaderRoute: typeof AtlasProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +177,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AtlasProjectsRoute: AtlasProjectsRoute,
+  ContactRoute: ContactRoute,
+  JournalRoute: JournalRoute,
+  LighthouseNetworkRoute: LighthouseNetworkRoute,
+  MaritimeRoutesRoute: MaritimeRoutesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
