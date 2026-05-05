@@ -111,7 +111,7 @@ function Home() {
             { img: hero, title: "Lighthouse Network", coord: "—", note: "Beacons of the southern coast" },
             { img: capeHorn, title: "Cape Horn", coord: "55° 58′ S", note: "The terminal cape" },
             { img: navarino, title: "Navarino Island", coord: "55° S", note: "Frontier island geography" },
-            { img: atlas, title: "Puerto Williams", coord: "54° 56′ S", note: "The southernmost port" },
+            { img: atlas, title: "Puerto Williams", coord: "54° 56′ S", note: "The southernmost city in the world" },
             { img: hero, title: "Strait of Magellan", coord: "53° S", note: "The interoceanic passage" },
             { img: antarctica, title: "Chilean Antarctica", coord: "62°+ S", note: "Across the Drake Passage" },
           ].map((t) => (
