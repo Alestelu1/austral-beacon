@@ -12,7 +12,7 @@ const entries = [
   { date: "Feb 2026", read: "10 min", title: "The mythology of Cape Horn", excerpt: "On a place that exists as much in literature as it does on the map.", img: capeHorn, tag: "Essay" },
 ];
 
-export const Route = createFileRoute("/journal")({
+export const Route = createFileRoute("/journal/")({
   head: () => ({
     meta: [
       { title: "Editorial Journal — Austral Beacon Media" },
