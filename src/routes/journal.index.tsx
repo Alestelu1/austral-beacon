@@ -48,9 +48,18 @@ function Journal() {
               <span>{e.read}</span>
             </div>
             <h2 className="font-display text-3xl mb-3 group-hover:text-primary transition-colors text-balance">
-              {e.title}
+              {"to" in e && e.to ? (
+                <Link to={e.to}>{e.title}</Link>
+              ) : (
+                e.title
+              )}
             </h2>
             <p className="text-muted-foreground leading-relaxed">{e.excerpt}</p>
+            {"to" in e && e.to && (
+              <Link to={e.to} className="inline-block mt-4 font-mono text-[0.65rem] tracking-widest uppercase text-primary hover:text-beacon">
+                Read the dispatch →
+              </Link>
+            )}
           </article>
         ))}
       </section>
