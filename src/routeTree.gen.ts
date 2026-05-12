@@ -17,6 +17,7 @@ import { Route as AtlasProjectsRouteImport } from './routes/atlas-projects'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as JournalIndexRouteImport } from './routes/journal.index'
+import { Route as JournalPuertoWilliamsPuertoToroRouteImport } from './routes/journal.puerto-williams-puerto-toro'
 
 const MaritimeRoutesRoute = MaritimeRoutesRouteImport.update({
   id: '/maritime-routes',
@@ -58,6 +59,12 @@ const JournalIndexRoute = JournalIndexRouteImport.update({
   path: '/',
   getParentRoute: () => JournalRoute,
 } as any)
+const JournalPuertoWilliamsPuertoToroRoute =
+  JournalPuertoWilliamsPuertoToroRouteImport.update({
+    id: '/puerto-williams-puerto-toro',
+    path: '/puerto-williams-puerto-toro',
+    getParentRoute: () => JournalRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/journal': typeof JournalRouteWithChildren
   '/lighthouse-network': typeof LighthouseNetworkRoute
   '/maritime-routes': typeof MaritimeRoutesRoute
+  '/journal/puerto-williams-puerto-toro': typeof JournalPuertoWilliamsPuertoToroRoute
   '/journal/': typeof JournalIndexRoute
 }
 export interface FileRoutesByTo {
@@ -76,6 +84,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/lighthouse-network': typeof LighthouseNetworkRoute
   '/maritime-routes': typeof MaritimeRoutesRoute
+  '/journal/puerto-williams-puerto-toro': typeof JournalPuertoWilliamsPuertoToroRoute
   '/journal': typeof JournalIndexRoute
 }
 export interface FileRoutesById {
@@ -87,6 +96,7 @@ export interface FileRoutesById {
   '/journal': typeof JournalRouteWithChildren
   '/lighthouse-network': typeof LighthouseNetworkRoute
   '/maritime-routes': typeof MaritimeRoutesRoute
+  '/journal/puerto-williams-puerto-toro': typeof JournalPuertoWilliamsPuertoToroRoute
   '/journal/': typeof JournalIndexRoute
 }
 export interface FileRouteTypes {
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/lighthouse-network'
     | '/maritime-routes'
+    | '/journal/puerto-williams-puerto-toro'
     | '/journal/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/lighthouse-network'
     | '/maritime-routes'
+    | '/journal/puerto-williams-puerto-toro'
     | '/journal'
   id:
     | '__root__'
@@ -118,6 +130,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/lighthouse-network'
     | '/maritime-routes'
+    | '/journal/puerto-williams-puerto-toro'
     | '/journal/'
   fileRoutesById: FileRoutesById
 }
@@ -189,14 +202,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JournalIndexRouteImport
       parentRoute: typeof JournalRoute
     }
+    '/journal/puerto-williams-puerto-toro': {
+      id: '/journal/puerto-williams-puerto-toro'
+      path: '/puerto-williams-puerto-toro'
+      fullPath: '/journal/puerto-williams-puerto-toro'
+      preLoaderRoute: typeof JournalPuertoWilliamsPuertoToroRouteImport
+      parentRoute: typeof JournalRoute
+    }
   }
 }
 
 interface JournalRouteChildren {
+  JournalPuertoWilliamsPuertoToroRoute: typeof JournalPuertoWilliamsPuertoToroRoute
   JournalIndexRoute: typeof JournalIndexRoute
 }
 
 const JournalRouteChildren: JournalRouteChildren = {
+  JournalPuertoWilliamsPuertoToroRoute: JournalPuertoWilliamsPuertoToroRoute,
   JournalIndexRoute: JournalIndexRoute,
 }
 
