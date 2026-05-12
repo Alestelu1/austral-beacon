@@ -11,11 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MaritimeRoutesRouteImport } from './routes/maritime-routes'
 import { Route as LighthouseNetworkRouteImport } from './routes/lighthouse-network'
-import { Route as JournalRouteImport } from './routes/journal'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AtlasProjectsRouteImport } from './routes/atlas-projects'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as JournalIndexRouteImport } from './routes/journal.index'
 
 const MaritimeRoutesRoute = MaritimeRoutesRouteImport.update({
   id: '/maritime-routes',
@@ -25,11 +25,6 @@ const MaritimeRoutesRoute = MaritimeRoutesRouteImport.update({
 const LighthouseNetworkRoute = LighthouseNetworkRouteImport.update({
   id: '/lighthouse-network',
   path: '/lighthouse-network',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const JournalRoute = JournalRouteImport.update({
-  id: '/journal',
-  path: '/journal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -52,24 +47,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JournalIndexRoute = JournalIndexRouteImport.update({
+  id: '/journal/',
+  path: '/journal/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/atlas-projects': typeof AtlasProjectsRoute
   '/contact': typeof ContactRoute
-  '/journal': typeof JournalRoute
   '/lighthouse-network': typeof LighthouseNetworkRoute
   '/maritime-routes': typeof MaritimeRoutesRoute
+  '/journal/': typeof JournalIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/atlas-projects': typeof AtlasProjectsRoute
   '/contact': typeof ContactRoute
-  '/journal': typeof JournalRoute
   '/lighthouse-network': typeof LighthouseNetworkRoute
   '/maritime-routes': typeof MaritimeRoutesRoute
+  '/journal': typeof JournalIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -77,9 +77,9 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/atlas-projects': typeof AtlasProjectsRoute
   '/contact': typeof ContactRoute
-  '/journal': typeof JournalRoute
   '/lighthouse-network': typeof LighthouseNetworkRoute
   '/maritime-routes': typeof MaritimeRoutesRoute
+  '/journal/': typeof JournalIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -88,27 +88,27 @@ export interface FileRouteTypes {
     | '/about'
     | '/atlas-projects'
     | '/contact'
-    | '/journal'
     | '/lighthouse-network'
     | '/maritime-routes'
+    | '/journal/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/atlas-projects'
     | '/contact'
-    | '/journal'
     | '/lighthouse-network'
     | '/maritime-routes'
+    | '/journal'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/atlas-projects'
     | '/contact'
-    | '/journal'
     | '/lighthouse-network'
     | '/maritime-routes'
+    | '/journal/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -116,9 +116,9 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AtlasProjectsRoute: typeof AtlasProjectsRoute
   ContactRoute: typeof ContactRoute
-  JournalRoute: typeof JournalRoute
   LighthouseNetworkRoute: typeof LighthouseNetworkRoute
   MaritimeRoutesRoute: typeof MaritimeRoutesRoute
+  JournalIndexRoute: typeof JournalIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -135,13 +135,6 @@ declare module '@tanstack/react-router' {
       path: '/lighthouse-network'
       fullPath: '/lighthouse-network'
       preLoaderRoute: typeof LighthouseNetworkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/journal': {
-      id: '/journal'
-      path: '/journal'
-      fullPath: '/journal'
-      preLoaderRoute: typeof JournalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -172,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/journal/': {
+      id: '/journal/'
+      path: '/journal'
+      fullPath: '/journal/'
+      preLoaderRoute: typeof JournalIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -180,10 +180,19 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AtlasProjectsRoute: AtlasProjectsRoute,
   ContactRoute: ContactRoute,
-  JournalRoute: JournalRoute,
   LighthouseNetworkRoute: LighthouseNetworkRoute,
   MaritimeRoutesRoute: MaritimeRoutesRoute,
+  JournalIndexRoute: JournalIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PageHeader } from "@/components/PageShell";
 import navarino from "@/assets/navarino.jpg";
 import capeHorn from "@/assets/cape-horn.jpg";
