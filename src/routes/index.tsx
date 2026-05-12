@@ -111,7 +111,7 @@ function Home() {
             { img: hero, title: "Lighthouse Network", coord: "—", note: "Beacons of the southern coast" },
             { img: capeHorn, title: "Cape Horn", coord: "55° 58′ S", note: "The terminal cape" },
             { img: navarino, title: "Navarino Island", coord: "55° S", note: "Frontier island geography" },
-            { img: atlas, title: "Puerto Williams", coord: "54° 56′ S", note: "The southernmost city in the world — distinct from Puerto Toro, the southernmost village" },
+            { img: atlas, title: "Puerto Williams", coord: "54° 56′ S", note: "The southernmost city in the world — distinct from Puerto Toro, the southernmost village", to: "/journal/puerto-williams-puerto-toro" as const },
             { img: hero, title: "Strait of Magellan", coord: "53° S", note: "The interoceanic passage" },
             { img: antarctica, title: "Chilean Antarctica", coord: "62°+ S", note: "Across the Drake Passage" },
           ].map((t) => (
@@ -128,6 +128,11 @@ function Home() {
                 <div>
                   <h3 className="font-display text-2xl">{t.title}</h3>
                   <p className="text-sm text-muted-foreground mt-1">{t.note}</p>
+                  {"to" in t && t.to && (
+                    <Link to={t.to} className="inline-block mt-3 font-mono text-[0.65rem] tracking-widest uppercase text-primary hover:text-beacon">
+                      Read the dispatch →
+                    </Link>
+                  )}
                 </div>
               </div>
             </article>

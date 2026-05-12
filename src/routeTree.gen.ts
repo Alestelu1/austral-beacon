@@ -16,6 +16,8 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AtlasProjectsRouteImport } from './routes/atlas-projects'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as JournalIndexRouteImport } from './routes/journal.index'
+import { Route as JournalPuertoWilliamsPuertoToroRouteImport } from './routes/journal.puerto-williams-puerto-toro'
 
 const MaritimeRoutesRoute = MaritimeRoutesRouteImport.update({
   id: '/maritime-routes',
@@ -52,24 +54,38 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JournalIndexRoute = JournalIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => JournalRoute,
+} as any)
+const JournalPuertoWilliamsPuertoToroRoute =
+  JournalPuertoWilliamsPuertoToroRouteImport.update({
+    id: '/puerto-williams-puerto-toro',
+    path: '/puerto-williams-puerto-toro',
+    getParentRoute: () => JournalRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/atlas-projects': typeof AtlasProjectsRoute
   '/contact': typeof ContactRoute
-  '/journal': typeof JournalRoute
+  '/journal': typeof JournalRouteWithChildren
   '/lighthouse-network': typeof LighthouseNetworkRoute
   '/maritime-routes': typeof MaritimeRoutesRoute
+  '/journal/puerto-williams-puerto-toro': typeof JournalPuertoWilliamsPuertoToroRoute
+  '/journal/': typeof JournalIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/atlas-projects': typeof AtlasProjectsRoute
   '/contact': typeof ContactRoute
-  '/journal': typeof JournalRoute
   '/lighthouse-network': typeof LighthouseNetworkRoute
   '/maritime-routes': typeof MaritimeRoutesRoute
+  '/journal/puerto-williams-puerto-toro': typeof JournalPuertoWilliamsPuertoToroRoute
+  '/journal': typeof JournalIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -77,9 +93,11 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/atlas-projects': typeof AtlasProjectsRoute
   '/contact': typeof ContactRoute
-  '/journal': typeof JournalRoute
+  '/journal': typeof JournalRouteWithChildren
   '/lighthouse-network': typeof LighthouseNetworkRoute
   '/maritime-routes': typeof MaritimeRoutesRoute
+  '/journal/puerto-williams-puerto-toro': typeof JournalPuertoWilliamsPuertoToroRoute
+  '/journal/': typeof JournalIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,15 +109,18 @@ export interface FileRouteTypes {
     | '/journal'
     | '/lighthouse-network'
     | '/maritime-routes'
+    | '/journal/puerto-williams-puerto-toro'
+    | '/journal/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/atlas-projects'
     | '/contact'
-    | '/journal'
     | '/lighthouse-network'
     | '/maritime-routes'
+    | '/journal/puerto-williams-puerto-toro'
+    | '/journal'
   id:
     | '__root__'
     | '/'
@@ -109,6 +130,8 @@ export interface FileRouteTypes {
     | '/journal'
     | '/lighthouse-network'
     | '/maritime-routes'
+    | '/journal/puerto-williams-puerto-toro'
+    | '/journal/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -116,7 +139,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AtlasProjectsRoute: typeof AtlasProjectsRoute
   ContactRoute: typeof ContactRoute
-  JournalRoute: typeof JournalRoute
+  JournalRoute: typeof JournalRouteWithChildren
   LighthouseNetworkRoute: typeof LighthouseNetworkRoute
   MaritimeRoutesRoute: typeof MaritimeRoutesRoute
 }
@@ -172,15 +195,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/journal/': {
+      id: '/journal/'
+      path: '/'
+      fullPath: '/journal/'
+      preLoaderRoute: typeof JournalIndexRouteImport
+      parentRoute: typeof JournalRoute
+    }
+    '/journal/puerto-williams-puerto-toro': {
+      id: '/journal/puerto-williams-puerto-toro'
+      path: '/puerto-williams-puerto-toro'
+      fullPath: '/journal/puerto-williams-puerto-toro'
+      preLoaderRoute: typeof JournalPuertoWilliamsPuertoToroRouteImport
+      parentRoute: typeof JournalRoute
+    }
   }
 }
+
+interface JournalRouteChildren {
+  JournalPuertoWilliamsPuertoToroRoute: typeof JournalPuertoWilliamsPuertoToroRoute
+  JournalIndexRoute: typeof JournalIndexRoute
+}
+
+const JournalRouteChildren: JournalRouteChildren = {
+  JournalPuertoWilliamsPuertoToroRoute: JournalPuertoWilliamsPuertoToroRoute,
+  JournalIndexRoute: JournalIndexRoute,
+}
+
+const JournalRouteWithChildren =
+  JournalRoute._addFileChildren(JournalRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AtlasProjectsRoute: AtlasProjectsRoute,
   ContactRoute: ContactRoute,
-  JournalRoute: JournalRoute,
+  JournalRoute: JournalRouteWithChildren,
   LighthouseNetworkRoute: LighthouseNetworkRoute,
   MaritimeRoutesRoute: MaritimeRoutesRoute,
 }
