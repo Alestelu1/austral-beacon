@@ -8,7 +8,7 @@ import atlas from "@/assets/atlas-chart.jpg";
 const entries = [
   { date: "May 2026", read: "12 min", title: "On the keepers of the western channels", excerpt: "Notes from a passage between Faro Evangelistas and Puerto Edén — on weather, watches, and the slow work of keeping a light.", img: hero, tag: "Field Notes" },
   { date: "Apr 2026", read: "8 min", title: "Reading the chart of the Beagle", excerpt: "What 19th-century surveys still tell us — and miss — about the channel that splits Tierra del Fuego.", img: atlas, tag: "Cartography" },
-  { date: "Mar 2026", read: "15 min", title: "Puerto Williams, the southernmost city in the world", excerpt: "Portrait of the world's southernmost city on Navarino Island — distinct from Puerto Toro, the southernmost permanently inhabited village in Chile.", img: navarino, tag: "Reportage" },
+  { date: "Mar 2026", read: "15 min", title: "Puerto Williams & Puerto Toro: two milestones at the end of the chart", excerpt: "A deep-dive into the world's southernmost city on Navarino Island, and Puerto Toro — the southernmost permanently inhabited village — as separate waypoints of austral navigation.", img: navarino, tag: "Reportage", to: "/journal/puerto-williams-puerto-toro" as const },
   { date: "Feb 2026", read: "10 min", title: "The mythology of Cape Horn", excerpt: "On a place that exists as much in literature as it does on the map.", img: capeHorn, tag: "Essay" },
 ];
 
